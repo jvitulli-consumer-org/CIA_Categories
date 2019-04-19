@@ -175,7 +175,7 @@ Public Class Login
                 If GoodToGO = True Then
                     'Lets get on with it and show the app
                     'Response.Redirect("MasterData.aspx?id=" & Trim(Session("EMPLID")))
-                    Response.Redirect("MasterData.aspx")
+                    Response.Redirect("Default.aspx")
                 Else
                     StopRightHere("GroupStop")
 
