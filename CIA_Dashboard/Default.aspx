@@ -25,9 +25,9 @@
                        <asp:TreeView ID="TreeView1" runat="server" ExpandDepth="2" ForeColor="#003366">
                             </asp:TreeView>
                 </td>
-                <td class="auto-style2">
+                <td class="auto-style2" style="vertical-align:top">
                     <asp:Panel ID="EmployeePNL" runat="server" Height="59px">
-                        <asp:GridView ID="GridView1"  AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BorderStyle="None" GridLines="None"  
+                        <asp:GridView ID="GridView1" sytle="vertical-align:top" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BorderStyle="None" GridLines="None"  
                             runat="server">
                             <Columns>
                                 <asp:BoundField DataField="Name" HeaderText="Employee" ReadOnly="True" SortExpression="Name" />
