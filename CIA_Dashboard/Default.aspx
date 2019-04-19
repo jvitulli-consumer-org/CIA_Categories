@@ -29,6 +29,9 @@
                     <asp:Panel ID="EmployeePNL" runat="server" Height="59px">
                         <asp:GridView ID="GridView1"  AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BorderStyle="None" GridLines="None"  
                             runat="server">
+                            <Columns>
+                                <asp:BoundField DataField="Name" HeaderText="Employee" ReadOnly="True" SortExpression="Name" />
+                            </Columns>
                         </asp:GridView>
                     </asp:Panel>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GlobalSQLDataConnection %>" 
