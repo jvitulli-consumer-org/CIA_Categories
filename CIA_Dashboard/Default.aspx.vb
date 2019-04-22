@@ -36,9 +36,11 @@ Public Class _Default
 
             If DT3.Rows.Count > 0 Then
                 EmployeePNL.Visible = True
+                SecondCard.Visible = True
                 CIA_Employees(ProjIdx)
             Else
                 EmployeePNL.Visible = False
+                SecondCard.Visible = False
 
             End If
             'dt3.rows(1)("name").value

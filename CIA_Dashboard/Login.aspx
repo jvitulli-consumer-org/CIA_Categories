@@ -9,7 +9,7 @@
     
     <title>Consultant Accounts</title>
     </head>
-<body style="font-family: AvertaW01; font-weight: normal; font-style: normal;" >
+<body style="font-family:Averta">
 
 <form id="Logon" runat="server" >
       <center>
