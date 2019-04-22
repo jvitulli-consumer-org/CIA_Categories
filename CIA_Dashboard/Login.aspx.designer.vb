@@ -23,6 +23,15 @@ Partial Public Class Login
     Protected WithEvents Logon As Global.System.Web.UI.HtmlControls.HtmlForm
     
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''LoginPNL control.
     '''</summary>
     '''<remarks>

@@ -15,8 +15,9 @@
       <center>
           <br />
           <h1>CIA Dashboard</h1>
+          <asp:Label ID="Label1" runat="server" Text="You must be part of the AD &quot;CU_DOMAIN\CR UR CIA_Dashboard&quot;" Visible="False"></asp:Label>
           <br />
-          You must be part of the AD &quot;CU_DOMAIN\CR UR CIA_Dashboard&quot;<br />
+          <br />
           <br />
 
        <asp:Panel ID="LoginPNL" runat="server" >

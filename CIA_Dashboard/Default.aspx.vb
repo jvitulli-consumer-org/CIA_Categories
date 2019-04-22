@@ -95,6 +95,7 @@ Public Class _Default
     End Sub
 
 
+
     Public sqlConn2 As String = LocalClass.SQLCNN
 
     Dim FirstTimeIntoApp As Boolean
