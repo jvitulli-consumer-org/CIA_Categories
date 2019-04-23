@@ -16,87 +16,6 @@ Public Class _Default
     Dim ProjName As String
     Dim ProjIdx As Integer
 
-    Protected Sub TreeView1_SelectedNodeChanged(sender As Object, e As EventArgs) Handles TreeView1.SelectedNodeChanged
-
-        Try
-            ProjIdx = TreeView1.SelectedNode.Value
-            ProjName = Mid(TreeView1.SelectedNode.ValuePath, 6, (Len(TreeView1.SelectedNode.ValuePath) - 9)) & TreeView1.SelectedNode.Text
-
-            ' Details_PNL.Visible = True
-
-            'Given the ProjID, find all that have entries regardless of Guild or Management
-
-            CIA_Employees(ProjIdx)
-
-            SQL3 = "select distinct    B.First + ' ' + B.last as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIdx
-            SQL3 &= " union "
-            SQL3 &= " Select distinct    B.First + ' ' + B.last as name   from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIdx
-
-            DT3 = LocalClass.ExecuteSQLDataSet(SQL3)
-
-            If DT3.Rows.Count > 0 Then
-                EmployeePNL.Visible = True
-                SecondCard.Visible = True
-                CIA_Employees(ProjIdx)
-            Else
-                EmployeePNL.Visible = False
-                SecondCard.Visible = False
-
-            End If
-            'dt3.rows(1)("name").value
-
-            ' For j = 0 To DT3.Rows.Count - 1
-            'CAT_NODE = New TreeNode()
-            'CAT_NODE.Text = DT3.Rows(j)("ContentCategory").ToString
-            'CAT_NODE.Value = DT3.Rows(j)("Idx").ToString
-            'UMB_NODE.ChildNodes.Add(CAT_NODE)
-            'Next
-
-
-        Catch
-            'If we are not on the lowest leaf, we do nothing
-        End Try
-
-    End Sub
-
-
-    Sub CIA_Employees(ProjIDX)
-
-        'For the specific user and weekrange, obtian all the projects that they had entered time for
-        'This proc will update the user display Card.  That is currently a blank pannel called Details_PNL
-        'On the Details_PNL, there should be either a grid with 3 columns, Proj Description, Hours, Remove.  The Hours collumn will be a text box for that row
-        'while the Remove will be a button or link to remove that row
-        'Rows can be added by clicking on the treeview1 to add a project (category) which will update the Card after a blank row is added to the database
-
-        'SQL = "Select  sysid, Projidx, ProjName, hours From timesheet_alloc_mgr_tbl  where"
-        'SQL &= " Emplid=" & EMPLID
-        'SQL &= " and Weekrange='" & WeekRange & "'"
-        'SQL &= " Order By ProjName asc"
-        'DT = LocalClass.ExecuteSQLDataSet(SQL)
-
-        SqlDataSource1.SelectCommand = "select distinct    B.First + ' ' + B.last as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIDX
-        SqlDataSource1.SelectCommand &= " union "
-        SqlDataSource1.SelectCommand &= "Select distinct    B.First + ' ' + B.last as name   from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIDX
-
-
-        'SqlDataSource1.SelectCommand = "Select sysid, Projidx, ProjName, Percentage From timesheet_alloc_mgr_tbl  where "
-        'SqlDataSource1.SelectCommand &= "  Emplid=" & EMPLID & "  and Weekrange='" & WeekRange & "'"
-        'SqlDataSource1.SelectCommand &= " Order By ProjName asc"
-
-        'SqlDataSource1.DeleteCommand = "DELETE FROM  timesheet_alloc_mgr_tbl where Emplid=" & EMPLID & "  and Weekrange='" & WeekRange & "'"
-        'SqlDataSource1.DeleteCommand &= " and SysID=" & Details_GridView.SelectedDataKey.ToString
-
-        'Now we have to display this,  probably in a repeater control that has a label and text box per row or in a simple grid control
-
-        'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-        'Should we adjust the size here?
-
-        'Details_GridView.Rows(I).Cells(0).Text
-
-    End Sub
-
-
 
     Public sqlConn2 As String = LocalClass.SQLCNN
 
@@ -111,7 +30,6 @@ Public Class _Default
             Response.Redirect("login.aspx")
         End If
 
-
         If IsPostBack Then
 
         Else
@@ -122,9 +40,58 @@ Public Class _Default
 
         End If
 
+    End Sub
+
+    Protected Sub TreeView1_SelectedNodeChanged(sender As Object, e As EventArgs) Handles TreeView1.SelectedNodeChanged
+
+        'This proc will load all data pertenent to the category that the user has clicked on
+
+        'Frist, we get the Proj ID and Proj Name from the tree view
+
+        Try
+            ProjIdx = TreeView1.SelectedNode.Value
+            ProjName = Mid(TreeView1.SelectedNode.ValuePath, 6, (Len(TreeView1.SelectedNode.ValuePath) - 9)) & TreeView1.SelectedNode.Text
+
+            CIA_Employees(ProjIdx)
+
+            'Show employee name
+            'SQL3 = "select distinct    B.First + ' ' + B.last as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIdx
+            'SQL3 &= " union "
+            'SQL3 &= " Select distinct    B.First + ' ' + B.last as name   from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIdx
+
+
+            ' Decided if we should show the different pannels
+            '1. Is there employees for the employee pannel? Then show the employee title instead of name to annoymize the data
+            SQL3 = "select distinct    B.jobtitle1  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIdx
+            SQL3 &= " union "
+            SQL3 &= " Select distinct     B.jobtitle1   from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIdx
+
+            DT3 = LocalClass.ExecuteSQLDataSet(SQL3)
+
+            If DT3.Rows.Count > 0 Then
+                EmployeePNL.Visible = True
+                SecondCard.Visible = True
+                CIA_Employees(ProjIdx)
+            Else
+                EmployeePNL.Visible = False
+                SecondCard.Visible = False
+
+            End If
+
+        Catch
+            'If we are not on the lowest leaf, we do nothing
+        End Try
 
     End Sub
 
+
+    Sub CIA_Employees(ProjIDX)
+
+        SqlDataSource1.SelectCommand = "select distinct    b.jobtitle1 as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIDX
+        SqlDataSource1.SelectCommand &= " union "
+        SqlDataSource1.SelectCommand &= "Select distinct      b.jobtitle1 as name  from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIDX
+
+    End Sub
 
     Protected Sub Load_TreeView()
 
@@ -179,6 +146,5 @@ Public Class _Default
         TreeView1.Nodes.Item(0).Expanded = True
 
     End Sub
-
 
 End Class

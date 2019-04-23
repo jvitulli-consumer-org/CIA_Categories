@@ -90,7 +90,7 @@
                      <asp:Panel ID="SecondCard" runat="server" Height="59px" Visible="False">
                      <div class="auto-style3">
                                 <!--<img src="img_avatar2.png" alt="Avatar" style="width:100%">-->
-                               <p style="color:white;background-color:green;text-align:center;font-weight:bold;">Employees recording category time</p> 
+                               <p style="color:white;background-color:green;text-align:center;font-weight:bold;">More Data</p> 
                                 <div class="container">
                                     <!--<h4><b>Jane Doe</b></h4> -->
                                     <p>
