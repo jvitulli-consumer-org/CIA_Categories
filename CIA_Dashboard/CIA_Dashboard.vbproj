@@ -97,6 +97,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\Spacer72-12.png" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -161,7 +162,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\PublishProfiles\Dev- %28Y%29.pubxml" />
+    <None Include="My Project\PublishProfiles\CIA Dashboard %28Dev on Y%29.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

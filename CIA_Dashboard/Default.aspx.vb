@@ -87,9 +87,9 @@ Public Class _Default
 
     Sub CIA_Employees(ProjIDX)
 
-        SqlDataSource1.SelectCommand = "select distinct    b.jobtitle1 as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIDX
+        SqlDataSource1.SelectCommand = "select distinct  SUBSTRING (b.Jobtitle1, 1, 35) as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIDX
         SqlDataSource1.SelectCommand &= " union "
-        SqlDataSource1.SelectCommand &= "Select distinct      b.jobtitle1 as name  from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIDX
+        SqlDataSource1.SelectCommand &= "Select distinct  SUBSTRING (b.Jobtitle1, 1, 35) as name  from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIDX
 
     End Sub
 

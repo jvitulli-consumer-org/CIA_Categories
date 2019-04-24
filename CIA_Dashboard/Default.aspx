@@ -5,19 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <!--https://www.w3schools.com/howto/howto_css_cards.asp-->
 <head runat="server">
-    <title>CIA Dashboard</title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 246px;
-        }
-        
 
+    <title>CIA Dashboard</title>
+
+    <style type="text/css">
+      
         .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
             transition: 0.3s;
             width: 40%;
             border-radius: 5px;
-  
             }
 
         .card:hover {
@@ -32,15 +29,19 @@
         padding: 2px 16px;
         }
 
+          .auto-style1 {
+            width: 246px;
+        }
+        
         .auto-style3 {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
             width: 119%;
-            border-radius: 5px;
+            border-radius:  5px;
         }
 
         .auto-style4 {
-            width: 10px;
+            width: 25px;
         }
 
     </style>
@@ -84,7 +85,10 @@
                         
                             </asp:SqlDataSource>
                 </td>
-                <td class="auto-style4">ssssssssssss</td>
+                <td class="auto-style4">
+                  
+                    <img src="images/Spacer72-12.png" />
+                </td>
                 <td style="vertical-align:top">
 
                      <asp:Panel ID="SecondCard" runat="server" Height="59px" Visible="False">
@@ -94,12 +98,7 @@
                                 <div class="container">
                                     <!--<h4><b>Jane Doe</b></h4> -->
                                     <p>
-                                         <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" BorderStyle="None" DataSourceID="SqlDataSource1" GridLines="None" sytle="vertical-align:top">
-                                             <AlternatingRowStyle BackColor="White" />
-                                        <Columns>
-                                            <asp:BoundField DataField="Name" ReadOnly="True" SortExpression="Name" />
-                                        </Columns>
-                                        </asp:GridView>
+                                        Did you know that...
                                     </p> 
                                 </div>
                         </div>

@@ -75,13 +75,4 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SecondCard As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''GridView2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents GridView2 As Global.System.Web.UI.WebControls.GridView
 End Class
