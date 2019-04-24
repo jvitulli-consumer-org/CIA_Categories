@@ -62,9 +62,9 @@ Public Class _Default
 
             ' Decided if we should show the different pannels
             '1. Is there employees for the employee pannel? Then show the employee title instead of name to annoymize the data
-            SQL3 = "select distinct    B.jobtitle1  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIdx
+            SQL3 = "select distinct    B.first+ ' ' + B.last from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIdx
             SQL3 &= " union "
-            SQL3 &= " Select distinct     B.jobtitle1   from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIdx
+            SQL3 &= " Select distinct     B.first+ ' ' + B.last   from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIdx
 
             DT3 = LocalClass.ExecuteSQLDataSet(SQL3)
 
@@ -87,9 +87,9 @@ Public Class _Default
 
     Sub CIA_Employees(ProjIDX)
 
-        SqlDataSource1.SelectCommand = "select distinct  SUBSTRING (b.Jobtitle1, 1, 35) as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIDX
+        SqlDataSource1.SelectCommand = "select distinct  B.first+ ' ' + B.last as name  from [dbo].[Timesheet_Alloc_Mgr_Tbl] A, ID_TBL B where a.emplid=b.emplid and ProjIDX=" & ProjIDX
         SqlDataSource1.SelectCommand &= " union "
-        SqlDataSource1.SelectCommand &= "Select distinct  SUBSTRING (b.Jobtitle1, 1, 35) as name  from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIDX
+        SqlDataSource1.SelectCommand &= "Select distinct  B.first+ ' ' + B.last as name  from [dbo].[Timesheet_Alloc_Tbl] A, ID_TBL B where a.netid=b.netid And IDX=" & ProjIDX
 
     End Sub
 
